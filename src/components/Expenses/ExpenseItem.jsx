@@ -1,7 +1,7 @@
 import "./ExpenseItem.css"
 import ExpenseDate from "./ExpenseDate";
 import Card from "../Ui/Card";
-function ExpenseItem({date,amount,title}){
+const ExpenseItem=({date,amount,title})=>{
 
   
     return (
