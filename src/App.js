@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import Expense from './components/Expense';
 function App() {
@@ -27,7 +28,13 @@ function App() {
       date:new Date(2020,7,14)
     },
   ]
- 
+    /*
+ return React.createElement(
+  'div',
+  {},
+  React.createElement('h2',{},'Let\'s get started'),
+  React.createElement(Expense,{items:expenses})
+ )*/
   return (
     <div>
  <h2>Let's get started</h2>
