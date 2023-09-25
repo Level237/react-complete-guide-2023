@@ -12,17 +12,27 @@ const ExpenseForm=()=>{
        // amount:""
     //})
     const titleChangehandler=(event)=>{
-        setTitle(event.target.value)
+        inputChangeHandler("title",event.target.value)
 //setUserInput({...userInput,title:event.target.value});
 //setUserInput((prevInput)=>{console.log(prevInput);return {...prevInput,title:event.target.value}})
     }
     const amountChangehandler=(event)=>{
-        setAmount(event.target.value)
+        inputChangeHandler("amount",event.target.value)
         //setUserInput({...userInput,amount:event.target.value});
     }
     const dateChangehandler=(event)=>{
-        setDate(event.target.value)
+        inputChangeHandler("date",event.target.value)
         //setUserInput({...userInput,date:event.target.value});
+    }
+
+    const inputChangeHandler=(identifier,value)=>{
+        if(identifier==="title"){
+            setTitle(value)
+        }else if(identifier==="date"){
+            setDate(value)
+        }else{
+            setAmount(value)
+        }
     }
     return (
         <form>
@@ -36,7 +46,7 @@ const ExpenseForm=()=>{
         </div>
         <div className="new-expense__control">
             <label>Date</label>
-            <input type="date" min="2019-01-01" max="2022-12-31"/>
+            <input type="date" min="2019-01-01" max="2022-12-31" onChange={dateChangehandler}/>
         </div>
         <div className="new-expense__actions">
             <button type="submit">Add Expense</button>
