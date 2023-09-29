@@ -6,12 +6,17 @@ import NewInvestment from "./components/investment/NewInvestment";
 
 function App() {
 
-  const [results,setResults]=useState(null)
+  const [userInput,setUserInput]=useState(null)
   const calculateHandler = (userInput) => {
-    // Should be triggered when form is submitted
-    // You might not directly want to bind it to the submit event on the form though...
 
-    const yearlyData = []; // per-year results
+    setUserInput(userInput)
+
+  
+  };
+  const yearlyData = []; // per-year results
+
+  if(userInput){
+    
 
     let currentSavings = +userInput['current-saving']; // feel free to change the shape of this input object!
     const yearlyContribution = +userInput['yearly-contribution']; // as mentioned: feel free to change the shape...
@@ -30,11 +35,8 @@ function App() {
         yearlyContribution: yearlyContribution,
       });
     }
-
-   setResults(yearlyData)
-   console.log(yearlyData)
-  };
-
+   
+  }
   return (
     <div>
       <Header/>
@@ -43,8 +45,9 @@ function App() {
 
       {/* Todo: Show below table conditionally (only once result data is available) */}
       {/* Show fallback text if no data is available */}
-
-      <ResultTable/>
+{!userInput && <p>No Investment Calculated yet.</p>}
+{userInput &&  <ResultTable data={yearlyData} currentSaving={userInput['current-saving']}/>}
+     
     </div>
   );
 }
