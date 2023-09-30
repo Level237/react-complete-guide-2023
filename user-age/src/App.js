@@ -7,6 +7,7 @@ function App() {
 
   const [users,setUsers]=useState([])
 
+
 console.log(users)
   const add=(user)=>{
 setUsers((prevUser)=>{
