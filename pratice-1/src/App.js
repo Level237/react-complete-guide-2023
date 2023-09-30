@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import ResultTable from "./components/ResultsTable/ResultTable";
 import NewInvestment from "./components/investment/NewInvestment";
 
@@ -45,7 +45,7 @@ function App() {
 
       {/* Todo: Show below table conditionally (only once result data is available) */}
       {/* Show fallback text if no data is available */}
-{!userInput && <p>No Investment Calculated yet.</p>}
+{!userInput && <p style={{ textAlign:"center" }}>No Investment Calculated yet.</p>}
 {userInput &&  <ResultTable data={yearlyData} currentSaving={userInput['current-saving']}/>}
      
     </div>
