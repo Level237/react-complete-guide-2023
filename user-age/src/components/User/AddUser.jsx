@@ -19,6 +19,7 @@ const AddUser=(props)=>{
         console.log("d")
     }
     const user={
+        "id":Math.random().toString,
         "userName":userInput['userName'],
         "age":userInput['age']
     }

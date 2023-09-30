@@ -9,7 +9,9 @@ function App() {
 
 console.log(users)
   const add=(user)=>{
-setUsers(user,...users)
+setUsers((prevUser)=>{
+  return [...prevUser,user]
+})
   }
   return (
     <div>
