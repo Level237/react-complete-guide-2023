@@ -1,4 +1,5 @@
 import styles from "./AddUser.module.css"
+import Card from "../Ui/Card";
 
 const AddUser=()=>{
 
@@ -12,14 +13,14 @@ const AddUser=()=>{
     }
     return (
         <form onSubmit={UserHandler}>
-            <div className={styles.input}>
+            <Card className={styles.input}>
                     <label htmlFor="UserName">UserName</label>
                     <input  onChange={(e)=>onChangeHandler("userName",e.target.value)} type="text"/>
                     <label htmlFor="age">Age(Years)</label>
                     <input onChange={(e)=>onChangeHandler("age",e.target.value)} id="age" type="number"/>
 
                     <button type="submit">Add User</button>
-            </div>
+            </Card>
         </form>
      
     )
