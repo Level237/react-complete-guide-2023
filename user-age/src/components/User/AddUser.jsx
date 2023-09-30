@@ -56,11 +56,17 @@ const AddUser=(props)=>{
         setError(null)
     }
     return (
-       <div>
-        {error && <ErrorModal title={error.title} message={error.message} onClick={errorHandler}/>} 
+
+        [
+            error && 
+            (<ErrorModal 
+            key="error-modal"
+            title={error.title} 
+            message={error.message} 
+            onClick={errorHandler}/>),
         <form onSubmit={UserHandler}>
             
-            <Card className={styles.input}>
+            <Card key="add-user-card" className={styles.input}>
                     <label htmlFor="UserName">UserName</label>
                     <input value={userInput['userName']} onChange={(e)=>onChangeHandler("userName",e.target.value)} type="text"/>
                     <label htmlFor="age">Age(Years)</label>
@@ -69,8 +75,9 @@ const AddUser=(props)=>{
                     <Button type="submit">Add User</Button>
             </Card>
         </form>
-       </div>
+        ]
         
+       
      
     )
 }
