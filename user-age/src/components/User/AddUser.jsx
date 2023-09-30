@@ -1,16 +1,26 @@
 import styles from "./AddUser.module.css"
 import Card from "../Ui/Card";
 import Button from "../Ui/Button";
+import { useState } from "react";
 
 const AddUser=()=>{
 
+    const [userInput,setUserInput]=useState({
+        "userName":"",
+        "age":0
+    })
     const UserHandler=(event)=>{
     event.preventDefault();
 
     }
 
     const onChangeHandler=(id,value)=>{
-        
+        setUserInput((prevInput)=>{
+            return {
+                ...prevInput,
+                [id]:value
+            }
+        })
     }
     return (
         <form onSubmit={UserHandler}>
