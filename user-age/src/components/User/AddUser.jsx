@@ -2,6 +2,7 @@ import styles from "./AddUser.module.css"
 import Card from "../Ui/Card";
 import Button from "../Ui/Button";
 import { useState } from "react";
+import ErrorModal from "./Modal/ErrorModal";
 
 const AddUser=(props)=>{
 
@@ -13,10 +14,10 @@ const AddUser=(props)=>{
     event.preventDefault();
 
     if(userInput['userName'].trim().length ===0 || userInput['age'].trim().length===0){
-       console.log("ee")
+       return
     }
     if(+userInput["age"] <1){
-        console.log("d")
+        return
     }
     const user={
         "id":Math.random().toString,
@@ -42,7 +43,9 @@ const AddUser=(props)=>{
        
     }
     return (
+       
         <form onSubmit={UserHandler}>
+             <ErrorModal title="An Error Occured " message="Something were wrong"/>
             <Card className={styles.input}>
                     <label htmlFor="UserName">UserName</label>
                     <input value={userInput['userName']} onChange={(e)=>onChangeHandler("userName",e.target.value)} type="text"/>
