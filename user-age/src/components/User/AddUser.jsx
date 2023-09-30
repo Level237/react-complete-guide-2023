@@ -3,7 +3,7 @@ import Card from "../Ui/Card";
 import Button from "../Ui/Button";
 import { useState } from "react";
 
-const AddUser=()=>{
+const AddUser=(props)=>{
 
     const [userInput,setUserInput]=useState({
         "userName":"",
@@ -12,12 +12,19 @@ const AddUser=()=>{
     const UserHandler=(event)=>{
     event.preventDefault();
 
-    if(userInput['userName'].trim().length ===0 || userInput['age'].trim().length){
-        return;
+    if(userInput['userName'].trim().length ===0 || userInput['age'].trim().length===0){
+       console.log("ee")
     }
     if(+userInput["age"] <1){
-        return;
+        console.log("d")
     }
+    const user={
+        "userName":userInput['userName'],
+        "age":userInput['age']
+    }
+    props.addUser(user)
+
+
         setUserInput({
             "userName":"",
             "age":""
@@ -30,7 +37,8 @@ const AddUser=()=>{
                 ...prevInput,
                 [id]:value
             }
-        })
+        });
+       
     }
     return (
         <form onSubmit={UserHandler}>
