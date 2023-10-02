@@ -1,27 +1,29 @@
 import styles from "./AddUser.module.css"
 import Card from "../Ui/Card";
 import Button from "../Ui/Button";
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import ErrorModal from "./Modal/ErrorModal";
 import Wrapper from "../Helpers/Wrapper";
 
 const AddUser=(props)=>{
 
-    const [userInput,setUserInput]=useState({
-        "userName":"",
-        "age":""
-    })
+    const nameInputRef=useRef();
+    const ageInputRef=useRef();
+
     const [error,setError]=useState()
+
     const UserHandler=(event)=>{
+        const enterUserName=nameInputRef.current.value
+        const enteredUserAge=ageInputRef.current.value
     event.preventDefault();
 
-    if(userInput['userName'].trim().length ===0 || userInput['age'].trim().length===0){
+    if(enterUserName.trim().length ===0 || enteredUserAge.trim().length===0){
        setError({
         title:"Invalid Input",
         message:"Please enter valid name and valid age (not empty value)"
        })
     }
-    if(+userInput["age"] < 1){
+    if(+enteredUserAge < 1){
         setError({
             title:"Invalid Input",
             message:"Please enter valid age (>0)"
@@ -29,29 +31,16 @@ const AddUser=(props)=>{
     }else{
         const user={
             "id":Math.random().toString,
-            "userName":userInput['userName'],
-            "age":userInput['age']
+            "userName":enterUserName,
+            "age":enteredUserAge
         }
         props.addUser(user)
+        nameInputRef.current.value=""
+        ageInputRef.current.value=""
     }
-   
-
-
-        setUserInput({
-            "userName":"",
-            "age":""
-        })
     }
 
-    const onChangeHandler=(id,value)=>{
-        setUserInput((prevInput)=>{
-            return {
-                ...prevInput,
-                [id]:value
-            }
-        });
-       
-    }
+    
 
     const errorHandler=()=>{
         setError(null)
@@ -64,9 +53,16 @@ const AddUser=(props)=>{
             
             <Card className={styles.input}>
                     <label htmlFor="UserName">UserName</label>
-                    <input value={userInput['userName']} onChange={(e)=>onChangeHandler("userName",e.target.value)} type="text"/>
+                    <input
+                    type="text"
+                    ref={nameInputRef}
+                    />
                     <label htmlFor="age">Age(Years)</label>
-                    <input value={userInput['age']} onChange={(e)=>onChangeHandler("age",e.target.value)} id="age" type="number"/>
+                    <input
+                     id="age" 
+                     type="number"
+                     ref={ageInputRef}
+                     />
 
                     <Button type="submit">Add User</Button>
             </Card>
