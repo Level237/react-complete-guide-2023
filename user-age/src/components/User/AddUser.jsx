@@ -1,7 +1,7 @@
 import styles from "./AddUser.module.css"
 import Card from "../Ui/Card";
 import Button from "../Ui/Button";
-import { useState } from "react";
+import React, { useState } from 'react';
 import ErrorModal from "./Modal/ErrorModal";
 import Wrapper from "../Helpers/Wrapper";
 
@@ -58,7 +58,7 @@ const AddUser=(props)=>{
     }
     return (
         
-       <Wrapper>
+       <React.Fragment>
         {error && <ErrorModal title={error.title} message={error.message} onClick={errorHandler}/>} 
         <form onSubmit={UserHandler}>
             
@@ -71,7 +71,7 @@ const AddUser=(props)=>{
                     <Button type="submit">Add User</Button>
             </Card>
         </form>
-       </Wrapper>
+       </React.Fragment>
         
      
     )

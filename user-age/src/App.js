@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import AddUser from './components/User/AddUser';
 import UserList from './components/User/UserList';
 
@@ -15,10 +15,10 @@ setUsers((prevUser)=>{
 })
   }
   return (
-    <div>
+    <Fragment>
       <AddUser addUser={add}/>
       <UserList users={users}/>
-    </div>
+    </Fragment>
   );
 }
 
