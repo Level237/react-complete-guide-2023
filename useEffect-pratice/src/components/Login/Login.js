@@ -46,6 +46,12 @@ const Login = (props) => {
     props.onLogin(enteredEmail, enteredPassword);
   };
 
+  useEffect(()=>{
+    console.log("Effect Running")
+    return ()=>{
+      console.log("Effect cleanup")
+    }
+  },[])
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
