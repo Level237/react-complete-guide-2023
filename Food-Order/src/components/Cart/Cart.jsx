@@ -7,14 +7,14 @@ const Cart=(props)=>{
     ].map((el)=><li>{el.name}</li>)}</ul>
 
     return (
-<Modal>
+<Modal onClose={props.onClose}>
         {cardItems}
         <div>
             <span>Total Amount</span>
             <span>35.62</span>
         </div>
         <div className={classes.actions}>
-            <button className={classes['button--alt']}>Close</button>
+            <button onClick={props.onClose} className={classes['button--alt']}>Close</button>
             <button className={classes.button}>Order</button>
         </div>
     </Modal>
