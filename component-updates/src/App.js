@@ -11,6 +11,7 @@ function App() {
   const toogleParagraphHandler=()=>{
     setShowParagraph(prevShowParagraph=>!prevShowParagraph)
   }
+  console.log("App Running")
   return (
     <div className="app">
       <h1>Hi there!</h1>
