@@ -15,7 +15,6 @@ class ErrorBoundary extends Component{
             return <p>Something is wrong</p>
         }
             return this.props.children
-        
     }
 }
 
