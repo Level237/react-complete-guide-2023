@@ -12,17 +12,18 @@ const SimpleInput = (props) => {
     reset:resetNameInput
   }=useInput(value=>value.trim()!=='');
   
+  const {
+    value:enteredEmail,
+    hasError:enteredEmailIsInvalid,
+    isValid:enteredEmailIsValid,
+    valueChangeHandler:emailChangeHandler,
+    inputBlurHandler:emailBlurHandler,
+    reset:resetEmailInput
+  }=useInput(value=>value.includes("@"));
 
-  const [enteredEmail,setEnteredEmail]=useState('');
-  const [enteredEmailTouched,setEnteredEmailTouched]=useState(false)
-
-
-
-  const enteredEmailIsValid=enteredEmail.includes("@");
-  const enteredEmailIsInvalid=!enteredEmailIsValid && enteredEmailTouched;
 
     let formIsValid=false;
-    if(enteredNameIsValid){
+    if(enteredNameIsValid && enteredEmailIsValid){
       formIsValid=true
     }
 
@@ -36,16 +37,9 @@ const SimpleInput = (props) => {
     //nameInputRef.current.value="" Not ideal,don't manipulate the dom
     resetNameInput()
 
-    setEnteredEmail('')
-    setEnteredEmailTouched(false);
+    resetEmailInput();
   }
 
-  const emailChangeHandler=(event)=>{
-    setEnteredEmail(event.target.value);
-  }
-  const emailBlurHandler=()=>{
-    setEnteredEmailTouched(true);
-  }
   
   const nameInputClasses=nameInputHasError ? "form-control invalid" : "form-control"
   const EmailInputClasses=enteredEmailIsInvalid ? "form-control invalid" : "form-control"
@@ -62,7 +56,7 @@ const SimpleInput = (props) => {
         
       {nameInputHasError && <p className="error-text">Name must not be empty</p>}
       </div>
-      <div className={nameInputClasses}>
+      <div className={EmailInputClasses}>
         <label htmlFor='name'>Your Email</label>
         <input 
         type='email' 
