@@ -44,6 +44,12 @@ const BasicForm = (props) => {
     resetEmail()
     
   }
+
+  let formIsValid=false;
+
+  if( nameIsValid && LastNameIsValid && emailIsValid){
+    formIsValid=true;
+  }
   const validClass=nameError ? "form-control invalid" : "form-control"
   const validClassLastName=lastNameError ? "form-control invalid" : "form-control"
   const validClassEmail=emailError ? "form-control invalid" : "form-control"
@@ -76,7 +82,7 @@ const BasicForm = (props) => {
         {emailError && <p className="error-text">N'est pas un email</p>}
       </div>
       <div className='form-actions'>
-        <button>Submit</button>
+        <button disabled={!formIsValid}>Submit</button>
       </div>
     </form>
   );
