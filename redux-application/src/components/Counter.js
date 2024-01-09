@@ -1,13 +1,14 @@
 
 import classes from './Counter.module.css';
 import {useSelector,useDispatch} from "react-redux"
+import {INCREMENT} from "../store/index"
 const Counter = () => {
   const counter=useSelector(state=>state.counter);
   const show=useSelector(state=>state.showCounter)
   const dispatch=useDispatch()
 
   const incrementHandler=()=>{
-   dispatch({type:'increment'});
+   dispatch({type:INC});
   }
 
   const increaseHandler=()=>{

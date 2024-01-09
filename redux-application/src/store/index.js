@@ -1,9 +1,10 @@
 import {createStore} from "redux";
 
+export const INCREMENT="increment";
 const initialState={counter:0,showCounter:true}
 const counterReducer=(state=initialState,action)=>{
 
-    if(action.type==="increment"){
+    if(action.type===INCREMENT){
         //state.counter++; You don't never mutate state
         return {
             counter:state.counter +1,
