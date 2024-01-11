@@ -1,10 +1,10 @@
 import Card from '../UI/Card';
 import classes from './ProductItem.module.css';
-import {useDispatch,useSelector} from "react-redux"
+import {useDispatch,} from "react-redux"
 import { cartAction } from '../../store/cart-slice';
 const ProductItem = (props) => {
 
-  const cart=useSelector((state)=>state.cart);
+
   const { id,title, price, description } = props;
   
   const dispatch=useDispatch()
@@ -12,33 +12,11 @@ const ProductItem = (props) => {
 
   const addToCartHandler=()=>{
 
-    const newTotalQuantity=cart.totalQuantity +1;
-    
-    const updatedItems=cart.items.slice();
-    const existingItem=updatedItems.find((item)=>item.id===id);
-    if(existingItem){
-      const updatedItem={...existingItem};
-      updatedItem.quantity++;
-      updatedItem.price=updatedItem.price+price;
-      const existingItemIndex=updatedItems.findIndex(
-        (item)=>item.id===id
-      );
-      updatedItems[existingItemIndex]=updatedItem;
-    }else{
-      updatedItems.push({
-        id:id,
-        price:price,
-        quantity:1,
-        totalPrice:price,
-        name:title
-      })
-      console.log(updatedItems)
-    }
-    const newCart={
-      totalQuantity:newTotalQuantity,
-      items:updatedItems
-    }
-    dispatch(cartAction.replaceCart(newCart))
+    dispatch(cartAction.addItemToCart({
+      id,
+      title,
+      price
+    }))
   }
   return (
     <li className={classes.item}>
