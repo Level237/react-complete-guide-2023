@@ -40,6 +40,11 @@ const cartSlice=createSlice({
                 console.log(existingItem.quantity)
                 existingItem.totalPrice=existingItem.totalPrice - existingItem.price
             }
+        },
+        replaceCart(state,action){
+            state.totalQuantity=action.payload.totalQuantity;
+            state.items=action.payload.items;
+            console.log(state.items)
         }
     }
 })

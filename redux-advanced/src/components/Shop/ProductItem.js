@@ -1,23 +1,51 @@
 import Card from '../UI/Card';
 import classes from './ProductItem.module.css';
-import {useDispatch} from "react-redux"
+import {useDispatch,useSelector} from "react-redux"
 import { cartAction } from '../../store/cart-slice';
 const ProductItem = (props) => {
+
+  const cart=useSelector((state)=>state.cart);
   const { id,title, price, description } = props;
+  
   const dispatch=useDispatch()
+
+
   const addToCartHandler=()=>{
-    dispatch(cartAction.addItemToCart({
-      id,
-      title,
-      price
-    }))
+
+    const newTotalQuantity=cart.totalQuantity +1;
+    
+    const updatedItems=cart.items.slice();
+    const existingItem=updatedItems.find((item)=>item.id===id);
+    if(existingItem){
+      const updatedItem={...existingItem};
+      updatedItem.quantity++;
+      updatedItem.price=updatedItem.price+price;
+      const existingItemIndex=updatedItems.findIndex(
+        (item)=>item.id===id
+      );
+      updatedItems[existingItemIndex]=updatedItem;
+    }else{
+      updatedItems.push({
+        id:id,
+        price:price,
+        quantity:1,
+        totalPrice:price,
+        name:title
+      })
+      console.log(updatedItems)
+    }
+    const newCart={
+      totalQuantity:newTotalQuantity,
+      items:updatedItems
+    }
+    dispatch(cartAction.replaceCart(newCart))
   }
   return (
     <li className={classes.item}>
       <Card>
         <header>
           <h3>{title}</h3>
-          <div className={classes.price}>${price.toFixed(2)}</div>
+          <div className={classes.price}>${price}</div>
         </header>
         <p>{description}</p>
         <div className={classes.actions}>
