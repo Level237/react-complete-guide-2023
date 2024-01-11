@@ -16,7 +16,11 @@ export const fetchCartData=()=>{
 
         try{
             const cartData=await fetchData();
-            dispatch(cartAction.replaceCart(cartData))
+            dispatch(cartAction.replaceCart({
+                items:cartData.items || [],
+                totalQuantity:cartData.totalQuantity
+            }))
+            console.log(cartData)
         }catch(error){
             dispatch(
                 uiActions.showNotification({
@@ -43,12 +47,13 @@ export const sendCartData=(cartData)=>{
           const sendRequest=async()=>{
             const response=await fetch("https://food-15762-default-rtdb.firebaseio.com/cart.json",{
                 method:"PUT",
-                body:JSON.stringify(cartData)
+                body:JSON.stringify({items:cartData.items,totalQuantity:cartData.totalQuantity})
               })
               if (!response.ok) {
                 throw new Error('Sending cart data failed.');
               }
           }
+          console.log(cartData)
         try{
             await sendRequest()
             dispatch(
