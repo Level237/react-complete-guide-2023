@@ -39,25 +39,25 @@ const router=createBrowserRouter([
         index:true,
         path:"",
     element:<Homepage/>
-      },
-    ]
-  },{
-    path:"/events",
-    element:<EventLayout/>,
-    children:[
-      {
-        path:"",
-        index:true,
-        element:<EventsPage/>
       },{
-        path:":id",
-        element:<EventDetailPage/>
-      },{
-        path:"new",
-        element:<NewEventPage/>
-      },{
-        path:":id/edit",
-        element:<EditEventPage/>
+        path:"/events",
+        element:<EventLayout/>,
+        children:[
+          {
+            path:"",
+            index:true,
+            element:<EventsPage/>
+          },{
+            path:":id",
+            element:<EventDetailPage/>
+          },{
+            path:"new",
+            element:<NewEventPage/>
+          },{
+            path:":id/edit",
+            element:<EditEventPage/>
+          }
+        ]
       }
     ]
   }
