@@ -1,10 +1,11 @@
-import {createBrowserRouter} from "react-router-dom"
-import Homepage from "./pages/Home";
+import {createBrowserRouter,RouterProvider} from "react-router-dom"
+import Homepage from "./pages/Homepage";
 import EventsPage from "./pages/EventsPage";
 import EventDetailPage from "./pages/EventDetailPage"
 import NewEventPage from "./pages/NewEventPage";
 import EditEventPage from "./pages/EditEventPage";
 import RootLayout from "./pages/Root";
+
 
 // Challenge / Exercise
 
@@ -54,7 +55,7 @@ const router=createBrowserRouter([
   }
 ])
 function App() {
-  return <div></div>;
+  return <RouterProvider router={router}/>;
 }
 
 export default App;
