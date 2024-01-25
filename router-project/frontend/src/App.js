@@ -42,21 +42,23 @@ const router=createBrowserRouter([
       },{
         path:"/events",
         element:<EventLayout/>,
-        loader:async()=>{
-          const response = await fetch('http://localhost:8080/events');
-
-          if (!response.ok) {
-            
-          } else {
-            const resData = await response.json();
-           return resData.events;
-          }
-        },
+       
         children:[
           {
             path:"",
             index:true,
-            element:<EventsPage/>
+            element:<EventsPage/>, loader:async()=>{
+              const response = await fetch('http://localhost:8080/events');
+    
+              if (!response.ok) {
+                
+              } else {
+                const resData = await response.json();
+                
+               return resData.events;
+              }
+              
+            },
           },{
             path:":id",
             element:<EventDetailPage/>
