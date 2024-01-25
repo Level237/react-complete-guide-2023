@@ -6,6 +6,7 @@ import NewEventPage from "./pages/NewEventPage";
 import EditEventPage from "./pages/EditEventPage";
 import RootLayout from "./pages/Root";
 import EventLayout from "./pages/EventLayout";
+import ErrorPage from "./pages/Error";
 
 
 // Challenge / Exercise
@@ -34,6 +35,7 @@ const router=createBrowserRouter([
   {
     path:"/",
     element:<RootLayout/>,
+    errorElement:<ErrorPage/>,
     children:[
       {
         index:true,
