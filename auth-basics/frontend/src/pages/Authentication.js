@@ -13,7 +13,7 @@ export async function action({request}){
   if(mode !=="login" &&  mode !=="signup"){
     throw json({message:"Unsupported mode"},{status:422})
   }
-  const data=request.formData();
+  const data=await request.formData();
   const authData={
     email:data.get('email'),
     password:data.get('password')
@@ -28,12 +28,13 @@ export async function action({request}){
   })
 
   if(response.status===422 || response.status===401){
+  
     return response;
   }
   if(!response.ok){
     throw json({message:"Could not authenticated  user."},{status:500})
   }
-
+  console.log(response);
   //soon manage that token
   return redirect('/')
 }
