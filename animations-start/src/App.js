@@ -28,7 +28,14 @@ class App extends Component {
         <Transition in={this.state.showBlock} 
         timeout={1000}
         mountOnEnter
-        unmountOnExit>
+        unmountOnExit
+        onEnter={()=>console.log('onEnter')}
+        onEntering={()=>console.log('onEntering')}
+        onEntered={()=>console.log('onEnter')}
+        onExit={()=>console.log('onEntered')}
+        onExiting={()=>console.log('onExiting')}
+        onExited={()=>console.log('onExited')}
+        >
           {state=>(
              <div style={{ 
               backgroundColor:"red",
