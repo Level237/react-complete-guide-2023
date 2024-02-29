@@ -4,13 +4,13 @@ const configureStore=()=>{
 
     const actions={
         TOOGLE_FAV:(curState,productId)=>{
-            const prodIndex = curState.findIndex(
+            const prodIndex = curState.products.findIndex(
                 p => p.id === productId
               );
-              const newFavStatus = !curState[prodIndex].isFavorite;
-              const updatedProducts = [...curState];
+              const newFavStatus = !curState.products[prodIndex].isFavorite;
+              const updatedProducts = [...curState.products];
               updatedProducts[prodIndex] = {
-                ...curState[prodIndex],
+                ...curState.products[prodIndex],
                 isFavorite: newFavStatus
               };
             return {products:updatedProducts}
