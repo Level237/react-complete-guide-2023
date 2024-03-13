@@ -41,8 +41,8 @@ let people:{
 
 //Type inference
 
-let course:string|number='React - the complete Guide'
+let course:string|boolean='React - the complete Guide'
 
-course=1234;
+course=true
 
 
