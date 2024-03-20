@@ -1,9 +1,10 @@
-import React from 'react'
-import Todo from '../models/Todo';
+import React, { useContext } from 'react'
+
 import TodoItem from './TodoItem';
 
 import CSS from "csstype";
-const Todos:React.FC<{items:Todo[],onRemoveTodo:(id:string)=>void}>=(props) =>{
+import { TodoContext } from '../store/todo-context';
+const Todos:React.FC=() =>{
 
   const todoStyles:CSS.Properties={
     listStyle: "none",
@@ -12,13 +13,13 @@ const Todos:React.FC<{items:Todo[],onRemoveTodo:(id:string)=>void}>=(props) =>{
     width:" 40rem"
   }
 
-  const removeHandler=(id:string)=>{
-    props.onRemoveTodo(id)
-  }
+ const todosCtx=useContext(TodoContext)
+
+ 
   return (
     
       <ul style={todoStyles}>
-        {props.items.map(item=> <TodoItem id={item.id} removeItem={removeHandler} key={item.id} text={item.text}/>)}
+        {todosCtx.items.map(item=> <TodoItem id={item.id} removeItem={todosCtx.removeTodo.bind(null,item.id)} key={item.id} text={item.text}/>)}
       </ul>
     
   )

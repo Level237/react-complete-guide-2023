@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef,useContext } from "react";
 import CSS from "csstype";
-const NewTodo:React.FC<{onAddTodo:(text:string)=>void}>=(props)=>{
+import { TodoContext } from "../store/todo-context";
+const NewTodo:React.FC=()=>{
 
-
+    const todosCtx=useContext(TodoContext)
     const FormStyles:CSS.Properties={
         width: "40rem",
     margin: "2rem auto",
@@ -46,7 +47,7 @@ const NewTodo:React.FC<{onAddTodo:(text:string)=>void}>=(props)=>{
         if(enteredText.trim().length===0){
             return;
         }
-        props.onAddTodo(enteredText);
+        todosCtx.addTodo(enteredText);
     }
     return <form style={FormStyles} onSubmit={submitHandler}>
         <label style={labelStyle} htmlFor="text">Todo Text</label>
